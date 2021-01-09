@@ -18,10 +18,6 @@ const cache = Meteor.isClient
   : new InMemoryCache();
 
 export const start = (sink) => {
-  if (Meteor.isClient) {
-    hydrate(window.__CSS__);
-  }
-
   const client = new ApolloClient({
     ssrMode: Meteor.isServer,
     link: createHttpLink({ uri: "/graphql", fetch }),
