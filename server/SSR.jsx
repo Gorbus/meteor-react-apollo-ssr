@@ -5,13 +5,19 @@ import { getMarkupFromTree } from "@apollo/client/react/ssr";
 import App from "../imports/both/App";
 import apolloClient from "../imports/both/apolloClient";
 import { ServerStyleSheet } from "styled-components";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 onPageLoad(async (sink) => {
+  const helmetContext = {};
   const sheet = new ServerStyleSheet();
   const client = apolloClient;
   const tree = sheet.collectStyles(
-    <App client={client} location={sink.request.url} />
+    <HelmetProvider context={helmetContext}>
+      <Helmet>
+        <title>Meteor React Apollo SSR</title>
+      </Helmet>
+      <App client={client} location={sink.request.url} />
+    </HelmetProvider>
   );
 
   return getMarkupFromTree({
@@ -20,10 +26,9 @@ onPageLoad(async (sink) => {
     renderFunction: renderToString,
   }).then((html) => {
     sink.renderIntoElementById("app", html);
-
     sink.appendToHead(sheet.getStyleTags());
 
-    const helmet = Helmet.renderStatic();
+    const { helmet } = helmetContext;
     sink.appendToHead(helmet.meta.toString());
     sink.appendToHead(helmet.title.toString());
 

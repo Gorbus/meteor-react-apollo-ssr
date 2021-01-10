@@ -7,7 +7,6 @@ import typeDefs from "/imports/apollo/schema.graphql";
 const resolvers = {
   Query: {
     getLink: (obj, { id }) => {
-      console.log(id);
       return LinksCollection.findOne(id);
     },
     getLinks: () => LinksCollection.find().fetch(),
