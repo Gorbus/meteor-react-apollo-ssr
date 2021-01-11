@@ -30,6 +30,6 @@ onPageLoad(async (sink) => {
     sink.appendToHead(helmet.meta.toString());
     sink.appendToHead(helmet.title.toString());
     sink.appendToHead(clientData);
+    sink.renderIntoElementById("app", html);
   });
-  sink.renderIntoElementById("app", html);
 });
