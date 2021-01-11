@@ -31,7 +31,7 @@ const Info = () => {
     <>
       <Helmet>
         <title>Info Page</title>
-        <meta name="description" content="Info Page descriptino" />
+        <meta name="description" content="Info Page Description" />
       </Helmet>
       <StyledDiv>
         <h2>Learn Meteor!</h2>

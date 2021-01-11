@@ -6,10 +6,6 @@ import { hydrate } from "react-dom";
 import { HelmetProvider } from "react-helmet-async";
 
 onPageLoad((sink) =>
-  hydrate(
-    <HelmetProvider>
-      <App client={apolloClient} />
-    </HelmetProvider>,
-    document.getElementById("app")
-  )
+  hydrate(<App client={apolloClient} />, document.getElementById("app"))
 );
+s;
