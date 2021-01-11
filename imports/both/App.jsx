@@ -7,7 +7,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async"
 export default function App({ client, location, context = {}}) {
   return (
     <ApolloProvider client={client}>
-      <HelmetProvider context={helmetContext}>
+      <HelmetProvider context={context}>
         <Helmet>
           <title>Meteor React Apollo SSR</title>
         </Helmet>
