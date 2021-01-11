@@ -5,40 +5,31 @@ import { getMarkupFromTree } from "@apollo/client/react/ssr";
 import App from "../imports/both/App";
 import apolloClient from "../imports/both/apolloClient";
 import { ServerStyleSheet } from "styled-components";
-import { Helmet, HelmetProvider } from "react-helmet-async";
 
+function getClientData(client) {
+  const cache = JSON.stringify(client.cache.extract())
+  return `<script>window.__APOLLO_STATE__=${cache.replace(/</g, "\\u003c")}</script>`
+}
 onPageLoad(async (sink) => {
-  const helmetContext = {};
-  const sheet = new ServerStyleSheet();
-  const client = apolloClient;
-  const tree = sheet.collectStyles(
-    <HelmetProvider context={helmetContext}>
-      <Helmet>
-        <title>Meteor React Apollo SSR</title>
-      </Helmet>
-      <App client={client} location={sink.request.url} />
-    </HelmetProvider>
-  );
+  const sheet = new ServerStyleSheet()
+  const client = apolloClient
+  const helmetContext = {}
+  const tree = sheet.collectStyles(<App client={client} location={sink.request.url} context={helmetContext} />)
+  const style = sheet.getStyleTags()
+  sheet.seal()
 
   return getMarkupFromTree({
     tree,
     context: {},
     renderFunction: renderToString,
   }).then((html) => {
-    sink.renderIntoElementById("app", html);
-    sink.appendToHead(sheet.getStyleTags());
-
     const { helmet } = helmetContext;
+    const clientData = getClientData(client)
+
+    sink.appendToHead(style);
     sink.appendToHead(helmet.meta.toString());
     sink.appendToHead(helmet.title.toString());
-
-    sink.appendToHead(`
-    <script>
-    window.__APOLLO_STATE__=${JSON.stringify(client.cache.extract()).replace(
-      /</g,
-      "\\u003c"
-    )}
-      </script>
-      `);
+    sink.appendToHead(clientData);
   });
+  sink.renderIntoElementById("app", html);
 });
