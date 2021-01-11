@@ -19,4 +19,4 @@ shell-server@0.5.0            # Server-side component of the `meteor shell` comm
 static-html             # Define static page content in .html files
 apollo                  # Basic Apollo integration for Meteor apps
 swydo:graphql           # Import .graphql files
-server-render
+server-render@0.3.1
