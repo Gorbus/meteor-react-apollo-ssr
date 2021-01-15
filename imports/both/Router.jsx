@@ -1,12 +1,13 @@
-import { Meteor } from 'meteor/meteor'
+import { Meteor } from "meteor/meteor";
 
-let Router = null
+let Router = null;
+
 if (Meteor.isServer) {
-  import { StaticRouter } from 'react-router-dom'
-  Router = StaticRouter
+  import { StaticRouter } from "react-router-dom";
+  Router = StaticRouter;
 } else {
-  import { BrowserRouter } from 'react-router-dom'
-  Router = BrowserRouter
+  import { BrowserRouter } from "react-router-dom";
+  Router = BrowserRouter;
 }
 
-export default Router
+export default Router;
