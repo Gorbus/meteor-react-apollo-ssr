@@ -9,6 +9,7 @@ const StyledDiv = styled.div`
   border-radius: 4px;
   color: grey;
   padding: 4px;
+  margin-bottom: 15px;
 `;
 
 const GET_LINKS = gql`
@@ -46,6 +47,14 @@ const Info = () => {
             </li>
           ))}
         </ul>
+      </StyledDiv>
+      <StyledDiv>
+          <h2>Dynamic Import and SSR</h2>
+          <ul>
+              <li>
+                  <Link to='/dynamicImport'>Dynamic Import</Link>
+              </li>
+          </ul>
       </StyledDiv>
     </>
   );
