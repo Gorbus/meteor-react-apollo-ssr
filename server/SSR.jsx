@@ -28,11 +28,10 @@ onPageLoad(async (sink) => {
     renderFunction: renderToString,
   }).then((html) => {
     const style = sheet.getStyleTags();
-    sheet.seal();
-
     const { helmet } = helmetContext;
     const clientData = getClientData(client);
     sink.appendToHead(style);
+    sheet.seal();
     sink.appendToHead(helmet.meta.toString());
     sink.appendToHead(helmet.title.toString());
     sink.appendToHead(clientData);

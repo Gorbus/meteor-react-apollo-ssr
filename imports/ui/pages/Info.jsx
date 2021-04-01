@@ -9,6 +9,7 @@ const StyledDiv = styled.div`
   border-radius: 4px;
   color: grey;
   padding: 4px;
+  background: white;
 `;
 
 const GET_LINKS = gql`
