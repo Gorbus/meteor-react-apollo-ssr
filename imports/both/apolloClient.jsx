@@ -6,9 +6,11 @@ const cache = Meteor.isClient
   ? new InMemoryCache().restore(window.__APOLLO_STATE__)
   : new InMemoryCache();
 
-export default apolloClient = new ApolloClient({
-  ssrMode: Meteor.isServer,
-  link: createHttpLink({ uri: Meteor.absoluteUrl('/graphql'), fetch }),
-  cache,
-  ssrForceFetchDelay: 100,
-})
+export default function getApolloClient() {
+  return new ApolloClient({
+    ssrMode: Meteor.isServer,
+    link: createHttpLink({ uri: Meteor.absoluteUrl('/graphql'), fetch }),
+    cache,
+    ssrForceFetchDelay: 100,
+  })
+}

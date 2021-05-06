@@ -3,7 +3,7 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { getMarkupFromTree } from "@apollo/client/react/ssr";
 import App from "../imports/both/App";
-import apolloClient from "../imports/both/apolloClient";
+import getApolloClient from "../imports/both/apolloClient";
 import { ServerStyleSheet } from "styled-components";
 
 function getClientData(client) {
@@ -16,7 +16,7 @@ function getClientData(client) {
 
 onPageLoad(async (sink) => {
   const sheet = new ServerStyleSheet();
-  const client = apolloClient;
+  const client = getApolloClient();
   const helmetContext = {};
   const tree = sheet.collectStyles(
     <App client={client} location={sink.request.url} context={helmetContext} />
