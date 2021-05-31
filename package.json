@@ -8,18 +8,18 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.6",
-    "@babel/runtime": "^7.12.5",
-    "apollo-server-express": "^2.19.1",
-    "cross-fetch": "^3.0.6",
-    "graphql": "^15.4.0",
-    "meteor-node-stubs": "^1.0.1",
+    "@apollo/client": "^3.3.19",
+    "@babel/runtime": "^7.14.0",
+    "apollo-server-express": "^2.25.0",
+    "cross-fetch": "^3.1.4",
+    "graphql": "^15.5.0",
+    "meteor-node-stubs": "^1.0.3",
     "r": "0.0.5",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet-async": "^1.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-helmet-async": "^1.0.9",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.3.0"
   },
   "meteor": {
     "mainModule": {
